@@ -1,11 +1,22 @@
-import './Map.css'
+import "leaflet/dist/leaflet.css";
+import "./Map.css";
 
-function Map() {
+import { LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
+
+const Map = () => {
+  const position: LatLngExpression = [55.19861585730597, 30.207041013890635];
+
   return (
-    <>
-      Test
-    </>
-  )
-}
+    <div className="leaflet-container">
+      <MapContainer center={position} zoom={16}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+      </MapContainer>
+    </div>
+  );
+};
 
-export default Map
+export default Map;
