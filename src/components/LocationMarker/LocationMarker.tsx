@@ -1,10 +1,24 @@
-import { Marker, Popup } from "react-leaflet";
-import { LatLngExpression } from "leaflet";
+import { useState } from "react";
 
-const LocationMarker = ({ position }: { position: LatLngExpression }) => {
-  return (
+import { LatLngExpression } from "leaflet";
+import { Marker, Popup, useMapEvents } from "react-leaflet";
+
+const LocationMarker: React.FC = () => {
+  const [position, setPosition] = useState<LatLngExpression | null>(null);
+
+  const map = useMapEvents({
+    click() {
+      map.locate()
+    },
+    locationfound(e) {
+      setPosition(e.latlng)
+      map.flyTo(e.latlng, map.getZoom())
+    },
+  })
+  
+  return position === null ? null : (
     <Marker position={position}>
-      <Popup>I'm here</Popup>
+      <Popup>You are here</Popup>
     </Marker>
   );
 };

@@ -15,7 +15,7 @@ const Map = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <LocationMarker position={position} />
+        <LocationMarker />
       </MapContainer>
     </div>
   );
