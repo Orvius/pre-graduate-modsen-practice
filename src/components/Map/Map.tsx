@@ -3,6 +3,7 @@ import "./Map.css";
 
 import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
+import LocationMarker from '../LocationMarker/LocationMarker';
 
 const Map = () => {
   const position: LatLngExpression = [55.19861585730597, 30.207041013890635];
@@ -14,6 +15,7 @@ const Map = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <LocationMarker position={position} />
       </MapContainer>
     </div>
   );
