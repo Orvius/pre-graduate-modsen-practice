@@ -1,0 +1,16 @@
+.location-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  bottom: 30px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.location-button:hover {
+  cursor: pointer;
+}
