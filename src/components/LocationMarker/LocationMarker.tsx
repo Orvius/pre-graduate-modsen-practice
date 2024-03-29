@@ -1,7 +1,7 @@
 import "./LocationMarker.css";
 
-import locationFalse from "../../assets/images/Location_False.svg";
-import locationTrue from "../../assets/images/Location_True.svg";
+import locationFalseImg from "@assets/images/Location_False.svg";
+import locationTrueImg from "@assets/images/Location_True.svg";
 
 import { useState } from "react";
 import { LatLngExpression } from "leaflet";
@@ -37,7 +37,7 @@ const LocationMarker: React.FC = () => {
         onClick={handleLocateButtonClick}
       >
         <img
-          src={active ? locationTrue : locationFalse}
+          src={active ? locationTrueImg : locationFalseImg}
           alt={
             active
               ? "Your geolocation is turned on"

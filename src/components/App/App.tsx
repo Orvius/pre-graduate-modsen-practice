@@ -1,13 +1,15 @@
 import "./App.css";
 
-import Map from "../Map/Map";
+import Map from "@components/Map/Map";
+import SideBar from "@components/SideBar/SideBar";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
+      <SideBar />
       <Map />
     </>
   );
-}
+};
 
 export default App;

@@ -3,9 +3,9 @@ import "./Map.css";
 
 import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
-import LocationMarker from "../LocationMarker/LocationMarker";
+import LocationMarker from "@components/LocationMarker/LocationMarker";
 
-const Map = () => {
+const Map: React.FC = () => {
   const position: LatLngExpression = [55.19861585730597, 30.207041013890635];
 
   return (
