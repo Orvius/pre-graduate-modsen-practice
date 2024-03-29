@@ -3,7 +3,7 @@ import "./Map.css";
 
 import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
-import LocationMarker from '../LocationMarker/LocationMarker';
+import LocationMarker from "../LocationMarker/LocationMarker";
 
 const Map = () => {
   const position: LatLngExpression = [55.19861585730597, 30.207041013890635];
