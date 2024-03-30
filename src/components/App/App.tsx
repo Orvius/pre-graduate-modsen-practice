@@ -1,7 +1,7 @@
 import "./App.css";
 
-import Map from "@components/Map/Map";
 import SideBar from "@components/SideBar/SideBar";
+import Map from "@components/Map/Map";
 
 const App: React.FC = () => {
   return (
