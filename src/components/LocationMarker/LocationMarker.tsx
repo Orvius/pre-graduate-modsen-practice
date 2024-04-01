@@ -1,4 +1,4 @@
-import "./LocationMarker.css";
+import styles from "./LocationMarker.module.css";
 
 import locationFalseImg from "@assets/images/Location_False.svg";
 import locationTrueImg from "@assets/images/Location_True.svg";
@@ -33,7 +33,7 @@ const LocationMarker: React.FC = () => {
         </Marker>
       )}
       <button
-        className={`location-button ${active ? "active" : ""}`}
+        className={`${styles.locationButton} ${active ? "active" : ""}`}
         onClick={handleLocateButtonClick}
       >
         <img

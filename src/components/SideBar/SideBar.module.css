@@ -1,4 +1,4 @@
-.sidebar-container {
+.sidebarContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,35 +13,35 @@
   z-index: 1000;
 }
 
-.sidebar-logo {
+.sidebarLogo {
   padding-top: 20px;
 }
 
-.sidebar-menu,
-.sidebar-buttons {
+.sidebarMenu,
+.sidebarButtons {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
-.sidebar-buttons {
+.sidebarButtons {
   gap: 15px;
 }
 
-.sidebar-menu {
+.sidebarMenu {
   height: 90%;
 }
 
-.sidebar-button {
+.sidebarButton {
   background-color: #ffffff;
 }
 
-.login-button {
+.loginButton {
   padding-bottom: 20px;
   background-color: #ffffff;
 }
 
-.sideBar-open_close {
+.sideBarOpen_close {
   position: fixed;
   top: 50%;
   left: 110px;
@@ -56,13 +56,13 @@
   z-index: 1000;
 }
 
-.sideBar-open_close img {
+.sideBarOpen_close img {
   width: 25px;
   height: 25px;
   display: block;
   margin: auto;
 }
 
-.sideBar-open_close.moved {
+.sideBarOpen_close.moved {
   left: 510px;
 }

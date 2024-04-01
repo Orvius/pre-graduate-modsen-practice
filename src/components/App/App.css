@@ -1,8 +1,13 @@
-#root {
-  width: 100vw;
-  height: 100vh;
+@import url("../../assets/fonts/Mont/stylesheet.css");
 
+#root {
   display: flex;
+}
+
+body {
+  font-family: Mont, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 * {

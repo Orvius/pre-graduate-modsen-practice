@@ -1,4 +1,4 @@
-.location-button {
+.locationButton {
   position: absolute;
   display: flex;
   align-items: center;
@@ -9,8 +9,4 @@
   width: 60px;
   height: 60px;
   border-radius: 10px;
-}
-
-.location-button:hover {
-  cursor: pointer;
 }

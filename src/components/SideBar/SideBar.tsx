@@ -1,47 +1,82 @@
-import "./SideBar.css";
-import React, { useState } from "react";
+import styles from "./SideBar.module.css";
+import { useState } from "react";
 import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
 
 import logo from "@assets/images/logo.svg";
-import searchImg from "@assets/images/searchbtn.svg";
-import favoritesImg from "@assets/images/favorites.svg";
+import searchIconOff from "@assets/images/searchIconOff.svg";
+import searchIconOn from "@assets/images/searchIconOn.svg";
+import favoritesOff from "@assets/images/favoritesOff.svg";
+import favoritesOn from "@assets/images/favoritesOn.svg";
 import loginImg from "@assets/images/loginbtn.svg";
 import arrowLeftImg from "@assets/images/arrowLeft.svg";
 import arrowRightImg from "@assets/images/arrowRight.svg";
 
 const SideBar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [searchInfoBarOpen, setSearchInfoBarOpen] = useState(false);
+  const [favouriteBarOpen, setFavouriteBarOpen] = useState(false);
 
   const toggleSearchInfoBar = () => {
-    setIsOpen(!isOpen);
+    setSearchInfoBarOpen(!searchInfoBarOpen);
+    if (favouriteBarOpen) setFavouriteBarOpen(false);
+  };
+
+  const toggleFavouriteBar = () => {
+    setFavouriteBarOpen(!favouriteBarOpen);
+    if (searchInfoBarOpen) setSearchInfoBarOpen(false);
+  };
+
+  const toggleBothBars = () => {
+    setSearchInfoBarOpen(!searchInfoBarOpen);
+    setFavouriteBarOpen(false);
   };
 
   return (
     <>
-      <div className="sidebar-container">
-        <a className="sidebar-logo" href="">
+      <div className={styles.sidebarContainer}>
+        <a className={styles.sidebarLogo} href="">
           <img src={logo} alt="logo" />
         </a>
-        <div className="sidebar-menu">
-          <div className="sidebar-buttons">
-            <button className="sidebar-button" onClick={toggleSearchInfoBar}>
-              <img src={searchImg} alt="search" />
+        <div className={styles.sidebarMenu}>
+          <div className={styles.sidebarButtons}>
+            <button
+              className={styles.sidebarButton}
+              onClick={toggleSearchInfoBar}
+            >
+              <img
+                src={searchInfoBarOpen ? searchIconOn : searchIconOff}
+                alt="search"
+              />
             </button>
-            <button className="sidebar-button" onClick={toggleSearchInfoBar}>
-              <img src={favoritesImg} alt="favorites" />
+            <button
+              className={styles.sidebarButton}
+              onClick={toggleFavouriteBar}
+            >
+              <img
+                src={favouriteBarOpen ? favoritesOn : favoritesOff}
+                alt="favorites"
+              />
             </button>
           </div>
-          <button className="login-button">
+          <button className={styles.loginButton}>
             <img src={loginImg} alt="login" />
           </button>
         </div>
       </div>
-      {isOpen && <SearchInfoBar />}
+      {(searchInfoBarOpen || favouriteBarOpen) && (
+        <SearchInfoBar isOpen={searchInfoBarOpen || favouriteBarOpen} />
+      )}
       <button
-        className={`sideBar-open_close ${isOpen ? "moved" : ""}`}
-        onClick={toggleSearchInfoBar}
+        className={`${styles.sideBarOpen_close} ${
+          searchInfoBarOpen || favouriteBarOpen ? styles.moved : ""
+        }`}
+        onClick={toggleBothBars}
       >
-        <img src={isOpen ? arrowLeftImg : arrowRightImg} alt="logo" />
+        <img
+          src={
+            searchInfoBarOpen || favouriteBarOpen ? arrowLeftImg : arrowRightImg
+          }
+          alt="logo"
+        />
       </button>
     </>
   );
