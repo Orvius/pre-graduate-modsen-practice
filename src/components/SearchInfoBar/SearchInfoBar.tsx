@@ -1,10 +1,10 @@
 import styles from "./SearchInfoBar.module.css";
 import { useState } from "react";
 
+import { searchBtnOff } from '@constants/images';
+
 import SearchInput from "@components/SearchInput/SearchInput";
 import SearchSettings from "@components/SearchSettings/SearchSettings";
-
-import searchBtnOff from "@assets/images/searchBtnOff.svg";
 
 interface SearchInfoBarProps {
   isOpen: boolean;
