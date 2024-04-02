@@ -3,14 +3,16 @@ import { useState } from "react";
 import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
 import FavouriteInfoBar from "@components/FavouriteInfoBar/FavouriteInfoBar";
 
-import logo from "@assets/images/logo.svg";
-import searchIconOff from "@assets/images/searchIconOff.svg";
-import searchIconOn from "@assets/images/searchIconOn.svg";
-import favoritesOff from "@assets/images/favoritesOff.svg";
-import favoritesOn from "@assets/images/favoritesOn.svg";
-import loginImg from "@assets/images/loginbtn.svg";
-import arrowLeftImg from "@assets/images/arrowLeft.svg";
-import arrowRightImg from "@assets/images/arrowRight.svg";
+import {
+  logo,
+  searchIconOff,
+  searchIconOn,
+  favoritesOff,
+  favoritesOn,
+  loginImg,
+  arrowLeftImg,
+  arrowRightImg,
+} from "@constants/images";
 
 const SideBar: React.FC = () => {
   const [searchInfoBarOpen, setSearchInfoBarOpen] = useState(false);

@@ -1,7 +1,6 @@
 import styles from "./LocationMarker.module.css";
 
-import locationFalseImg from "@assets/images/Location_False.svg";
-import locationTrueImg from "@assets/images/Location_True.svg";
+import { locationFalseImg, locationTrueImg } from '@constants/images';
 
 import { useState } from "react";
 import { LatLngExpression } from "leaflet";

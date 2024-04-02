@@ -1,5 +1,5 @@
 import styles from "./SearchInput.module.css";
-import searchIconInput from "@assets/images/searchIconInput.svg";
+import { searchIconInput } from '@constants/images';
 
 const SearchInput: React.FC = () => {
   return (
