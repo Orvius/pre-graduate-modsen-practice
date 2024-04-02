@@ -1,25 +1,33 @@
 import styles from "./SearchInfoBar.module.css";
+import { useState } from "react";
+
+import SearchInput from "@components/SearchInput/SearchInput";
 import SearchSettings from "@components/SearchSettings/SearchSettings";
 
-import searchIconInput from "@assets/images/searchIconInput.svg";
 import searchBtnOff from "@assets/images/searchBtnOff.svg";
-import searchBtnOn from "@assets/images/searchBtnOn.svg";
 
 interface SearchInfoBarProps {
   isOpen: boolean;
 }
 
 const SearchInfoBar: React.FC<SearchInfoBarProps> = ({ isOpen }) => {
+  const [selectedPlaces, setSelectedPlaces] = useState<string | undefined>();
+
+  const placeSelect = (placeName: string) => {
+    setSelectedPlaces(placeName);
+  };
+
   return (
     <>
       <div className={styles.searchInfoBarContainer}>
         <div className={styles.searchInfoBarInputs}>
-          <div className={styles.searchInput}>
-            <img src={searchIconInput} alt="Поиск" />
-            <input placeholder="Место, адрес..." />
-          </div>
+          <SearchInput />
           Искать:
-          <SearchSettings />В радиусе:
+          <SearchSettings
+            placeSelect={placeSelect}
+            selectedPlaces={selectedPlaces}
+          />
+          В радиусе:
           <div className={styles.searchInfoBarRadius}>
             <input className={styles.radiusInput} placeholder="1" />
             км

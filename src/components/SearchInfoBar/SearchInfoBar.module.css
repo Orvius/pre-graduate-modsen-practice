@@ -20,30 +20,6 @@
   font-weight: 800;
 }
 
-.searchInput {
-  display: flex;
-  align-items: center;
-  width: 350px;
-  height: 60px;
-  border: 3px solid #c4c4c4;
-  border-radius: 10px;
-  padding-left: 30px;
-  margin-bottom: 35px;
-}
-
-.searchInput img {
-  width: 22px;
-}
-
-.searchInput input {
-  height: 100%;
-  outline: none;
-  margin-left: 20px;
-  font-family: Mont;
-  font-size: 18px;
-  font-weight: 500;
-}
-
 .radiusInput {
   width: 100px;
   height: 50px;
@@ -54,15 +30,11 @@
   margin: 15px 20px 0px 0px;
   font-family: Mont;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .searchButton {
   width: 100%;
   background-color: transparent;
   padding-bottom: 11px;
-}
-
-.searchButton img {
-  width: 100%;
 }

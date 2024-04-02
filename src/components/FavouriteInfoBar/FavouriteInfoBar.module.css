@@ -1,0 +1,16 @@
+.favouriteInfoBarContainer {
+  position: fixed;
+  top: 0;
+  left: 110px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
+  background-color: #ffffff;
+  border-left: 3px solid #cecece;
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  padding: 25px;
+  font-size: 20px;
+  font-weight: 800;
+}

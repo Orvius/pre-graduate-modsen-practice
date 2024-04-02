@@ -1,6 +1,7 @@
 import styles from "./SideBar.module.css";
 import { useState } from "react";
 import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
+import FavouriteInfoBar from "@components/FavouriteInfoBar/FavouriteInfoBar";
 
 import logo from "@assets/images/logo.svg";
 import searchIconOff from "@assets/images/searchIconOff.svg";
@@ -26,8 +27,12 @@ const SideBar: React.FC = () => {
   };
 
   const toggleBothBars = () => {
-    setSearchInfoBarOpen(!searchInfoBarOpen);
-    setFavouriteBarOpen(false);
+    if (searchInfoBarOpen || favouriteBarOpen) {
+      setSearchInfoBarOpen(false);
+      setFavouriteBarOpen(false);
+    } else {
+      setSearchInfoBarOpen(true);
+    }
   };
 
   return (
@@ -62,9 +67,8 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-      {(searchInfoBarOpen || favouriteBarOpen) && (
-        <SearchInfoBar isOpen={searchInfoBarOpen || favouriteBarOpen} />
-      )}
+      {searchInfoBarOpen && <SearchInfoBar isOpen={searchInfoBarOpen} />}
+      {favouriteBarOpen && <FavouriteInfoBar />}
       <button
         className={`${styles.sideBarOpen_close} ${
           searchInfoBarOpen || favouriteBarOpen ? styles.moved : ""

@@ -16,8 +16,22 @@ import coffeeIcon from "@assets/images/coffee.svg";
 import bankIcon from "@assets/images/bank.svg";
 import hotelIcon from "@assets/images/hotels.svg";
 
-const SearchSettings: React.FC = () => {
-  const places = [
+interface Place {
+  label: string;
+  imgSrc: string;
+  placeName: string;
+}
+
+interface SearchSettingsProps {
+  placeSelect: (placeName: string) => void;
+  selectedPlaces: string | undefined;
+}
+
+const SearchSettings: React.FC<SearchSettingsProps> = ({
+  placeSelect,
+  selectedPlaces,
+}) => {
+  const places: Place[] = [
     { label: "Природа", imgSrc: natureIcon, placeName: "nature" },
     { label: "Культура", imgSrc: cultureIcon, placeName: "culture" },
     { label: "История", imgSrc: historyIcon, placeName: "history" },
@@ -46,6 +60,11 @@ const SearchSettings: React.FC = () => {
     { label: "Отели", imgSrc: hotelIcon, placeName: "hotel" },
     { label: "Разное", imgSrc: otherIcon, placeName: "other" },
   ];
+
+  const handlePlaceClick = (placeName: string) => {
+    placeSelect(placeName);
+  };
+
   return (
     <div className={styles.searchSettingsContainer}>
       <ul className={styles.listOfPlaces}>
@@ -53,7 +72,8 @@ const SearchSettings: React.FC = () => {
           <li
             key={index}
             id={place.placeName}
-            className={styles.elementOfList}
+            onClick={() => handlePlaceClick(place.placeName)}
+            className={selectedPlaces === place.placeName ? styles.selected : ""}
           >
             <img src={place.imgSrc} alt={place.label} />
             {place.label}
