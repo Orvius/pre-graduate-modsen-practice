@@ -28,7 +28,8 @@
       "@constants/*": ["src/constants/*"],
       "@utils/*": ["src/utils/*"],
       "@pages/*": ["src/pages/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@store/*": ["src/store/*"],
     },
   },
   "include": ["src"],
