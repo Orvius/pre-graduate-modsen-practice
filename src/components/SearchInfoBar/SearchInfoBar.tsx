@@ -13,10 +13,8 @@ const SearchInfoBar: React.FC = () => {
   const [radius, setRadius] = useState<string>("1");
 
   const dispatch = useAppDispatch();
-  const position = useAppSelector((state: RootState) => state.location.position);
-  
-  const lat = Array.isArray(position) ? position[0] : position?.lat ?? 0;
-  const lng = Array.isArray(position) ? position[1] : position?.lng ?? 0;
+  const latitude = useAppSelector((state: RootState) => state.location.latitude)!;
+  const longitude = useAppSelector((state: RootState) => state.location.longitude)!;
 
   const placeSelect = (placeName: string) => {
     setSelectedPlaces(placeName);
@@ -31,8 +29,8 @@ const SearchInfoBar: React.FC = () => {
     const radiusInMeters = String(parseInt(radius) * 1000);
     const fetch: FetchPlacesArguments = {
       radius: radiusInMeters,
-      lat: lat,
-      lon: lng,
+      lat: latitude,
+      lon: longitude,
     };
     await dispatch(fetchPlaces(fetch));
   };

@@ -1,20 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LatLngExpression } from "leaflet";
 
 interface LocationState {
-  position: LatLngExpression | null;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 const initialState: LocationState = {
-  position: null,
+  latitude: null,
+  longitude: null,
 };
 
 const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
-    setPosition(state, action: PayloadAction<LatLngExpression | null>) {
-      state.position = action.payload;
+    setPosition(state, action:  PayloadAction<{ latitude: number; longitude: number }>) {
+      state.latitude = action.payload.latitude;
+      state.longitude = action.payload.longitude;
     },
   },
 });
