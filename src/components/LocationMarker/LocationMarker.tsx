@@ -1,27 +1,34 @@
-import styles from "./LocationMarker.module.css";
-
-import { locationFalseImg, locationTrueImg } from '@constants/images';
-
-import { useState } from "react";
-import { LatLngExpression } from "leaflet";
+import { useState, useEffect } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import { setPosition } from "@store/locationSlice";
+import { RootState } from "@store/index";
+
+import styles from "./LocationMarker.module.css";
+import { locationFalseImg, locationTrueImg } from "@constants/images";
 
 const LocationMarker: React.FC = () => {
-  const [position, setPosition] = useState<LatLngExpression | null>(null);
+  const dispatch = useAppDispatch();
+  const position = useAppSelector((state: RootState) => state.location.position);
   const [active, setActive] = useState<boolean>(false);
 
   const map = useMapEvents({
     locationfound(e) {
       if (active) {
-        setPosition(e.latlng);
+        dispatch(setPosition(e.latlng));
         map.flyTo(e.latlng, map.getMaxZoom());
       }
     },
   });
 
+  useEffect(() => {
+    if (active) {
+      map.locate();
+    }
+  }, [active, map]);
+
   const handleLocateButtonClick = () => {
     setActive(true);
-      map.locate();
   };
 
   return (
@@ -37,11 +44,7 @@ const LocationMarker: React.FC = () => {
       >
         <img
           src={active ? locationTrueImg : locationFalseImg}
-          alt={
-            active
-              ? "Your geolocation is turned on"
-              : "Your geolocation is turned off"
-          }
+          alt={"Your geolocation"}
         />
       </button>
     </>
