@@ -9,15 +9,15 @@ import SearchSettings from "@components/SearchSettings/SearchSettings";
 import styles from "./SearchInfoBar.module.css";
 
 const SearchInfoBar: React.FC = () => {
-  const [selectedPlaces, setSelectedPlaces] = useState<string | undefined>();
+  const [selectedPlaces, setSelectedPlaces] = useState<string[]>(["historic"]);
   const [radius, setRadius] = useState<string>("1");
 
   const dispatch = useAppDispatch();
   const latitude = useAppSelector((state: RootState) => state.location.latitude)!;
   const longitude = useAppSelector((state: RootState) => state.location.longitude)!;
 
-  const placeSelect = (placeName: string) => {
-    setSelectedPlaces(placeName);
+  const placeSelect = (selectedPlaces: string[]) => {
+    setSelectedPlaces(selectedPlaces);
   };
 
   const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +31,7 @@ const SearchInfoBar: React.FC = () => {
       radius: radiusInMeters,
       lat: latitude,
       lon: longitude,
+      kinds: selectedPlaces.join(","),
     };
     await dispatch(fetchPlaces(fetch));
   };
@@ -42,7 +43,7 @@ const SearchInfoBar: React.FC = () => {
           <SearchInput />
           Искать:
           <SearchSettings
-            placeSelect={placeSelect}
+            updateSelectedPlaces={placeSelect}
             selectedPlaces={selectedPlaces}
           />
           В радиусе:

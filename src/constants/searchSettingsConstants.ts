@@ -1,47 +1,45 @@
-import natureIcon from "@assets/images/nature.svg";
-import cultureIcon from "@assets/images/culture.svg";
-import historyIcon from "@assets/images/history.svg";
-import religionIcon from "@assets/images/religion.svg";
-import architectureIcon from "@assets/images/architecture.svg";
-import industrialIcon from "@assets/images/industrial.svg";
-import otherIcon from "@assets/images/other.svg";
-import entertainmentIcon from "@assets/images/entertainment.svg";
-import sportIcon from "@assets/images/sport.svg";
-import adultIcon from "@assets/images/18+.svg";
-import shopIcon from "@assets/images/shop.svg";
-import foodIcon from "@assets/images/food.svg";
-import coffeeIcon from "@assets/images/coffee.svg";
-import bankIcon from "@assets/images/bank.svg";
-import hotelIcon from "@assets/images/hotels.svg";
+import natural from "@assets/images/nature.svg";
+import cultural from "@assets/images/culture.svg";
+import historic from "@assets/images/history.svg";
+import religion from "@assets/images/religion.svg";
+import architecture from "@assets/images/architecture.svg";
+import industrial_facilities from "@assets/images/industrial.svg";
+import other from "@assets/images/other.svg";
+import amusements from "@assets/images/entertainment.svg";
+import sport from "@assets/images/sport.svg";
+import adult from "@assets/images/18+.svg";
+import shops from "@assets/images/shop.svg";
+import foods from "@assets/images/food.svg";
+import banks from "@assets/images/bank.svg";
+import accomodations from "@assets/images/hotels.svg";
 
 const PLACES = [
-  { label: "Природа", imgSrc: natureIcon, placeName: "nature" },
-  { label: "Культура", imgSrc: cultureIcon, placeName: "culture" },
-  { label: "История", imgSrc: historyIcon, placeName: "history" },
-  { label: "Религия", imgSrc: religionIcon, placeName: "religion" },
+  { label: "Природа", imgSrc: natural, kind: "natural" },
+  { label: "Культура", imgSrc: cultural, kind: "cultural" },
+  { label: "История", imgSrc: historic, kind: "historic" },
+  { label: "Религия", imgSrc: religion, kind: "religion" },
   {
     label: "Архитектура",
-    imgSrc: architectureIcon,
-    placeName: "architecture",
+    imgSrc: architecture,
+    kind: "architecture",
   },
   {
     label: "Индустриальные объекты",
-    imgSrc: industrialIcon,
-    placeName: "industrial",
+    imgSrc: industrial_facilities,
+    kind: "industrial_facilities",
   },
   {
     label: "Развлечения",
-    imgSrc: entertainmentIcon,
-    placeName: "entertainment",
+    imgSrc: amusements,
+    kind: "amusements",
   },
-  { label: "Спорт", imgSrc: sportIcon, placeName: "sport" },
-  { label: "Для совершеннолетних", imgSrc: adultIcon, placeName: "adult" },
-  { label: "Магазины", imgSrc: shopIcon, placeName: "shop" },
-  { label: "Еда", imgSrc: foodIcon, placeName: "food" },
-  { label: "Кафе", imgSrc: coffeeIcon, placeName: "cafes" },
-  { label: "Банки", imgSrc: bankIcon, placeName: "banks" },
-  { label: "Отели", imgSrc: hotelIcon, placeName: "hotel" },
-  { label: "Разное", imgSrc: otherIcon, placeName: "other" },
+  { label: "Спорт", imgSrc: sport, kind: "sport" },
+  { label: "Для взрослых", imgSrc: adult, kind: "adult" },
+  { label: "Магазины", imgSrc: shops, kind: "shops" },
+  { label: "Еда", imgSrc: foods, kind: "foods" },
+  { label: "Банки", imgSrc: banks, kind: "banks" },
+  { label: "Проживание", imgSrc: accomodations, kind: "accomodations" },
+  { label: "Разное", imgSrc: other, kind: "other" },
 ];
 
 export { PLACES };

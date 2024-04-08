@@ -6,6 +6,6 @@ export interface Point {
 export interface Places {
   name: string;
   xid: string,
-  kind: string,
+  kinds: string,
   point: Point;
 }

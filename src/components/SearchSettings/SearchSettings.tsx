@@ -2,16 +2,22 @@ import styles from "./SearchSettings.module.css";
 import { PLACES } from "@constants/searchSettingsConstants";
 
 interface SearchSettingsProps {
-  placeSelect: (placeName: string) => void;
-  selectedPlaces: string | undefined;
+  updateSelectedPlaces: (selectedPlaces: string[]) => void;
+  selectedPlaces: string[];
 }
 
 const SearchSettings: React.FC<SearchSettingsProps> = ({
-  placeSelect,
+  updateSelectedPlaces,
   selectedPlaces,
 }) => {
   const handlePlaceClick = (placeName: string) => {
-    placeSelect(placeName);
+    if (selectedPlaces.includes(placeName)) {
+      updateSelectedPlaces(
+        selectedPlaces.filter((place) => place !== placeName)
+      );
+    } else {
+      updateSelectedPlaces([...selectedPlaces, placeName]);
+    }
   };
 
   return (
@@ -20,10 +26,10 @@ const SearchSettings: React.FC<SearchSettingsProps> = ({
         {PLACES.map((place, index) => (
           <li
             key={index}
-            id={place.placeName}
-            onClick={() => handlePlaceClick(place.placeName)}
+            id={place.kind}
+            onClick={() => handlePlaceClick(place.kind)}
             className={
-              selectedPlaces === place.placeName ? styles.selected : ""
+              selectedPlaces.includes(place.kind) ? styles.selected : ""
             }
           >
             <img src={place.imgSrc} alt={place.label} />

@@ -14,6 +14,7 @@ export interface FetchPlacesArguments {
   radius: string;
   lat: number;
   lon: number;
+  kinds: string,
 }
 
 export const fetchPlaces = createAsyncThunk<
@@ -21,10 +22,10 @@ export const fetchPlaces = createAsyncThunk<
   FetchPlacesArguments,
   { rejectValue: string }
 >(
-  "palces/fetchPlaces",
-  async function ({ radius, lat, lon }, { rejectWithValue }) {
+  "places/fetchPlaces",
+  async function ({ radius, lat, lon, kinds }, { rejectWithValue }) {
     const data = await axios
-      .get<Places[]>(getFullPlacesUrl(radius, lat, lon))
+      .get<Places[]>(getFullPlacesUrl(radius, lat, lon, kinds))
       .then((response) =>
         response.data.filter((place) => place.name.trim() !== "")
       )
