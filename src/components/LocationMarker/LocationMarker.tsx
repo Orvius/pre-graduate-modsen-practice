@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Marker, Popup, useMapEvents } from "react-leaflet";
-import { LatLngExpression } from 'leaflet';
+import { LatLngExpression, Icon } from 'leaflet';
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setPosition } from "@store/locationSlice";
 import { RootState } from "@store/index";
 
 import styles from "./LocationMarker.module.css";
-import { locationFalseImg, locationTrueImg } from "@constants/images";
+import { locationFalseImg, locationTrueImg, locationMarkerImg } from "@constants/images";
 
 type MarkerPosition = LatLngExpression | null;
 
@@ -34,12 +34,18 @@ const LocationMarker: React.FC = () => {
 
   const handleLocateButtonClick = () => {
     setActive(true);
+    map.locate();
   };
+
+  const markerIcon = new Icon({
+    iconUrl: locationMarkerImg,
+    iconSize: [32, 24],
+  });
 
   return (
     <>
       {position !== null && (
-        <Marker position={position}>
+        <Marker position={position} icon={markerIcon}>
           <Popup>You are here</Popup>
         </Marker>
       )}
