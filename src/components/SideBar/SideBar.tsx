@@ -69,7 +69,7 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-      {searchInfoBarOpen && <SearchInfoBar isOpen={searchInfoBarOpen} />}
+      {searchInfoBarOpen && <SearchInfoBar />}
       {favouriteBarOpen && <FavouriteInfoBar />}
       <button
         className={`${styles.sideBarOpen_close} ${

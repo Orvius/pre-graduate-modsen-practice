@@ -23,12 +23,13 @@
   align-items: center;
   margin-bottom: 20px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  opacity: .5;
 }
 
-.selected {
-  background-color: #868686;
+li.selected {
+  opacity: 1;
 }
 
 ::-webkit-scrollbar {
