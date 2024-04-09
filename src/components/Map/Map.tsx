@@ -6,13 +6,29 @@ import { VITE_TILE_LAYER_URL } from "@constants/config";
 import { PLACES } from "@constants/searchSettingsConstants";
 
 import { useAppSelector } from "@hooks/reduxHooks";
-
-import { MapContainer, TileLayer, ZoomControl, Marker, Popup } from "react-leaflet";
-import { Icon } from "leaflet";
+import { RootState } from "@store/index";
+import {
+  MapContainer,
+  TileLayer,
+  ZoomControl,
+  Marker,
+  Popup,
+  Circle,
+} from "react-leaflet";
+import { LatLngExpression, Icon } from "leaflet";
 import LocationMarker from "@components/LocationMarker/LocationMarker";
 
 const Map: React.FC = () => {
   const places = useAppSelector((state) => state.places);
+  const latitude = useAppSelector(
+    (state: RootState) => state.location.latitude
+  );
+  const longitude = useAppSelector(
+    (state: RootState) => state.location.longitude
+  );
+  const radius = useAppSelector(
+    (state: RootState) => state.searchInfoBar.radius
+  ) as string;
 
   const icons: { [key: string]: Icon } = {};
   PLACES.forEach((place) => {
@@ -33,6 +49,9 @@ const Map: React.FC = () => {
     return undefined;
   };
 
+  const center: LatLngExpression | null =
+    latitude !== null && longitude !== null ? [latitude, longitude] : null;
+
   return (
     <div className="leaflet-container">
       <MapContainer center={START_COORDINATES} zoom={16} zoomControl={false}>
@@ -48,6 +67,17 @@ const Map: React.FC = () => {
               <Popup>{place.name}</Popup>
             </Marker>
           ))}
+        {center && (
+          <Circle
+            center={center}
+            pathOptions={{
+              fillColor: "#5E7BC7",
+              fillOpacity: 0.3,
+              color: "transparent",
+            }}
+            radius={parseInt(radius) * 1000}
+          />
+        )}
         <TileLayer url={VITE_TILE_LAYER_URL} />
       </MapContainer>
     </div>

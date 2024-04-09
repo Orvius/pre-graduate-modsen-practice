@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import { setRadius } from "@store/searchInfoBarSlice";
 import { RootState } from "@store/index";
 import { fetchPlaces, FetchPlacesArguments } from "@store/placesSlice";
 
@@ -10,9 +11,9 @@ import styles from "./SearchInfoBar.module.css";
 
 const SearchInfoBar: React.FC = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>(["historic"]);
-  const [radius, setRadius] = useState<string>("1");
 
   const dispatch = useAppDispatch();
+  const radius = useAppSelector((state: RootState) => state.searchInfoBar.radius);
   const latitude = useAppSelector((state: RootState) => state.location.latitude)!;
   const longitude = useAppSelector((state: RootState) => state.location.longitude)!;
 
@@ -21,8 +22,7 @@ const SearchInfoBar: React.FC = () => {
   };
 
   const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.replace(/\D/g, '');
-    setRadius(value);
+    dispatch(setRadius(event.target.value.replace(/\D/g, '')));
   };
 
   const toggSearch = async () => {
