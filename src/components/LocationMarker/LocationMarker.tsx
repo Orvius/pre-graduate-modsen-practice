@@ -62,7 +62,7 @@ const LocationMarker: React.FC = () => {
             center={position}
             pathOptions={{
               fillColor: "#5E7BC7",
-              fillOpacity: 0.4,
+              fillOpacity: 0.3,
               color: "transparent",
             }}
             radius={100}

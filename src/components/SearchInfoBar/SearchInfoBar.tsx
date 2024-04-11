@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { setRadius } from "@store/searchInfoBarSlice";
+import { setRadius, setCircleVisibility } from "@store/searchInfoBarSlice";
 import { RootState } from "@store/index";
 import { fetchPlaces, FetchPlacesArguments } from "@store/placesSlice";
 
@@ -11,18 +11,26 @@ import styles from "./SearchInfoBar.module.css";
 
 const SearchInfoBar: React.FC = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>(["historic"]);
-
+  const radius = useAppSelector(
+    (state: RootState) => state.searchInfoBar.radius
+  );
+  const latitude = useAppSelector(
+    (state: RootState) => state.location.latitude
+  )!;
+  const longitude = useAppSelector(
+    (state: RootState) => state.location.longitude
+  )!;
   const dispatch = useAppDispatch();
-  const radius = useAppSelector((state: RootState) => state.searchInfoBar.radius);
-  const latitude = useAppSelector((state: RootState) => state.location.latitude)!;
-  const longitude = useAppSelector((state: RootState) => state.location.longitude)!;
 
   const placeSelect = (selectedPlaces: string[]) => {
     setSelectedPlaces(selectedPlaces);
   };
 
   const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setRadius(event.target.value.replace(/\D/g, '')));
+    let value = event.target.value;
+    if (value !== "") {
+      dispatch(setRadius(value));
+    }
   };
 
   const toggSearch = async () => {
@@ -34,6 +42,7 @@ const SearchInfoBar: React.FC = () => {
       kinds: selectedPlaces.join(","),
     };
     await dispatch(fetchPlaces(fetch));
+    dispatch(setCircleVisibility(true));
   };
 
   return (
@@ -51,7 +60,9 @@ const SearchInfoBar: React.FC = () => {
             <input
               className={styles.radiusInput}
               placeholder="1"
-              value={radius}
+              type="number"
+              min="1"
+              max="50"
               onChange={handleRadiusChange}
             />
             км

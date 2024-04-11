@@ -28,7 +28,10 @@ const Map: React.FC = () => {
   );
   const radius = useAppSelector(
     (state: RootState) => state.searchInfoBar.radius
-  ) as string;
+  );
+  const isCircleVisible = useAppSelector(
+    (state: RootState) => state.searchInfoBar.isCircleVisible
+  );
 
   const icons: { [key: string]: Icon } = {};
   PLACES.forEach((place) => {
@@ -67,13 +70,14 @@ const Map: React.FC = () => {
               <Popup>{place.name}</Popup>
             </Marker>
           ))}
-        {center && (
+        {center && isCircleVisible && (
           <Circle
             center={center}
             pathOptions={{
               fillColor: "#5E7BC7",
-              fillOpacity: 0.3,
-              color: "transparent",
+              fillOpacity: 0.2,
+              dashArray: "20, 10",
+              weight: 2,
             }}
             radius={parseInt(radius) * 1000}
           />

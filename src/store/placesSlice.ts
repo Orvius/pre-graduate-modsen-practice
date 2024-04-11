@@ -14,7 +14,7 @@ export interface FetchPlacesArguments {
   radius: string;
   lat: number;
   lon: number;
-  kinds: string,
+  kinds: string;
 }
 
 export const fetchPlaces = createAsyncThunk<

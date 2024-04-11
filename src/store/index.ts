@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import placesSlice from "./placesSlice"
-import locationSlice from "./locationSlice"
+import placesSlice from "./placesSlice";
+import locationSlice from "./locationSlice";
 import searchInfoBarSlice from "./searchInfoBarSlice";
 
 const rootReducer = combineReducers({
