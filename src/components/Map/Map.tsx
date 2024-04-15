@@ -6,7 +6,6 @@ import { VITE_TILE_LAYER_URL } from "@constants/config";
 import { PLACES } from "@constants/searchSettingsConstants";
 
 import { useAppSelector } from "@hooks/reduxHooks";
-import { RootState } from "@store/index";
 import {
   MapContainer,
   TileLayer,
@@ -20,17 +19,9 @@ import LocationMarker from "@components/LocationMarker/LocationMarker";
 
 const Map: React.FC = () => {
   const places = useAppSelector((state) => state.places);
-  const latitude = useAppSelector(
-    (state: RootState) => state.location.latitude
-  );
-  const longitude = useAppSelector(
-    (state: RootState) => state.location.longitude
-  );
-  const radius = useAppSelector(
-    (state: RootState) => state.searchInfoBar.radius
-  );
-  const isCircleVisible = useAppSelector(
-    (state: RootState) => state.searchInfoBar.isCircleVisible
+  const { latitude, longitude } = useAppSelector((state) => state.location);
+  const { radius, isCircleVisible } = useAppSelector(
+    (state) => state.searchInfoBar
   );
 
   const icons: { [key: string]: Icon } = {};

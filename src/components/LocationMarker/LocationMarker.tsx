@@ -3,7 +3,6 @@ import { Marker, Popup, Circle, useMapEvents } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setPosition } from "@store/locationSlice";
-import { RootState } from "@store/index";
 
 import styles from "./LocationMarker.module.css";
 import {
@@ -16,9 +15,7 @@ type MarkerPosition = LatLngExpression | null;
 
 const LocationMarker: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { latitude, longitude } = useAppSelector(
-    (state: RootState) => state.location
-  );
+  const { latitude, longitude } = useAppSelector((state) => state.location);
   const position: MarkerPosition =
     latitude && longitude ? [latitude, longitude] : null;
 

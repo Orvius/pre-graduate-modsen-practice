@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setRadius, setCircleVisibility } from "@store/searchInfoBarSlice";
-import { RootState } from "@store/index";
 import { fetchPlaces, FetchPlacesArguments } from "@store/placesSlice";
 
 import { searchBtnOff } from "@constants/images";
@@ -11,15 +10,9 @@ import styles from "./SearchInfoBar.module.css";
 
 const SearchInfoBar: React.FC = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>(["historic"]);
-  const radius = useAppSelector(
-    (state: RootState) => state.searchInfoBar.radius
-  );
-  const latitude = useAppSelector(
-    (state: RootState) => state.location.latitude
-  )!;
-  const longitude = useAppSelector(
-    (state: RootState) => state.location.longitude
-  )!;
+  const { radius } = useAppSelector((state) => state.searchInfoBar);
+  const latitude = useAppSelector((state) => state.location.latitude ?? 0);
+  const longitude = useAppSelector((state) => state.location.longitude ?? 0);
   const dispatch = useAppDispatch();
 
   const placeSelect = (selectedPlaces: string[]) => {
