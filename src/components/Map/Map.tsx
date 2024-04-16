@@ -3,19 +3,12 @@ import "./Map.css";
 
 import { START_COORDINATES } from "@constants/coordinate";
 import { VITE_TILE_LAYER_URL } from "@constants/config";
-import { PLACES } from "@constants/searchSettingsConstants";
 
 import { useAppSelector } from "@hooks/reduxHooks";
-import {
-  MapContainer,
-  TileLayer,
-  ZoomControl,
-  Marker,
-  Popup,
-  Circle,
-} from "react-leaflet";
-import { LatLngExpression, Icon } from "leaflet";
+import { MapContainer, TileLayer, ZoomControl, Circle } from "react-leaflet";
+import { LatLngExpression } from "leaflet";
 import LocationMarker from "@components/LocationMarker/LocationMarker";
+import PlaceMarkers from "@components/PlaceMarkers/PlaceMarkers";
 
 const Map: React.FC = () => {
   const places = useAppSelector((state) => state.places);
@@ -23,25 +16,6 @@ const Map: React.FC = () => {
   const { radius, isCircleVisible } = useAppSelector(
     (state) => state.searchInfoBar
   );
-
-  const icons: { [key: string]: Icon } = {};
-  PLACES.forEach((place) => {
-    icons[place.kind] = new Icon({
-      iconUrl: place.imgSrc,
-      iconSize: [40, 40],
-    });
-  });
-
-  const getPlaceIcon = (kinds: string): Icon | undefined => {
-    const kindsArray = kinds.split(",");
-    for (const kind of kindsArray) {
-      const trimmedKind = kind.trim();
-      if (icons[trimmedKind]) {
-        return icons[trimmedKind];
-      }
-    }
-    return undefined;
-  };
 
   const center: LatLngExpression | null =
     latitude !== null && longitude !== null ? [latitude, longitude] : null;
@@ -51,16 +25,9 @@ const Map: React.FC = () => {
       <MapContainer center={START_COORDINATES} zoom={16} zoomControl={false}>
         <ZoomControl position="topright" />
         <LocationMarker />
-        {places.listOfPlaces.length > 0 &&
-          places.listOfPlaces.map((place) => (
-            <Marker
-              key={place.xid}
-              position={[place.point.lat, place.point.lon]}
-              icon={getPlaceIcon(place.kinds)}
-            >
-              <Popup>{place.name}</Popup>
-            </Marker>
-          ))}
+        {places.listOfPlaces.length > 0 && (
+          <PlaceMarkers places={places.listOfPlaces} />
+        )}
         {center && isCircleVisible && (
           <Circle
             center={center}

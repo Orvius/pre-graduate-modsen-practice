@@ -1,7 +1,12 @@
 import { getFullPlacesUrl } from "@constants/fullPlacesUrl";
-import { Places } from "../types/places"; //не понимаю почему не могу @
+import { Places } from "@type/places";
 
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  Action,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 interface PlaceState {
@@ -56,8 +61,16 @@ const placesSlice = createSlice({
       .addCase(fetchPlaces.fulfilled, (state, action) => {
         state.listOfPlaces = action.payload;
         state.loading = false;
+      })
+      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+        state.error = action.payload;
+        state.loading = false;
       });
   },
 });
 
 export default placesSlice.reducer;
+
+function isError(action: Action) {
+  return action.type.endsWith("rejected");
+}
