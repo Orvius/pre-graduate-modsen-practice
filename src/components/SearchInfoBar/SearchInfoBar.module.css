@@ -34,7 +34,12 @@
 }
 
 .searchButton {
-  width: 100%;
-  background-color: transparent;
-  padding-bottom: 11px;
+  width: 350px;
+  height: 60px;
+  font-family: Mont;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #5e7bc7;
+  border-radius: 10px;
 }

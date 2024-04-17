@@ -1,7 +1,10 @@
 import styles from "./SideBar.module.css";
 import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "@hooks/reduxHooks";
+import { setPlaceCardOpen } from "@store/cardInfoSlice";
 import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
 import FavouriteInfoBar from "@components/FavouriteInfoBar/FavouriteInfoBar";
+import PlaceCard from "@components/PlaceCard/PlaceCard";
 
 import {
   logo,
@@ -17,21 +20,26 @@ import {
 const SideBar: React.FC = () => {
   const [searchInfoBarOpen, setSearchInfoBarOpen] = useState(false);
   const [favouriteBarOpen, setFavouriteBarOpen] = useState(false);
+  const placeCardOpen = useAppSelector((state) => state.cardInfo.placeCardOpen);
+  const dispatch = useAppDispatch();
 
   const toggleSearchInfoBar = () => {
     setSearchInfoBarOpen(!searchInfoBarOpen);
     if (favouriteBarOpen) setFavouriteBarOpen(false);
+    if (placeCardOpen) dispatch(setPlaceCardOpen(false));
   };
 
   const toggleFavouriteBar = () => {
     setFavouriteBarOpen(!favouriteBarOpen);
     if (searchInfoBarOpen) setSearchInfoBarOpen(false);
+    if (placeCardOpen) dispatch(setPlaceCardOpen(false));
   };
 
   const toggleBothBars = () => {
-    if (searchInfoBarOpen || favouriteBarOpen) {
+    if (searchInfoBarOpen || favouriteBarOpen || placeCardOpen) {
       setSearchInfoBarOpen(false);
       setFavouriteBarOpen(false);
+      dispatch(setPlaceCardOpen(false));
     } else {
       setSearchInfoBarOpen(true);
     }
@@ -71,15 +79,16 @@ const SideBar: React.FC = () => {
       </div>
       {searchInfoBarOpen && <SearchInfoBar />}
       {favouriteBarOpen && <FavouriteInfoBar />}
+      {placeCardOpen && <PlaceCard />}
       <button
         className={`${styles.sideBarOpen_close} ${
-          searchInfoBarOpen || favouriteBarOpen ? styles.moved : ""
+          searchInfoBarOpen || favouriteBarOpen || placeCardOpen ? styles.moved : ""
         }`}
         onClick={toggleBothBars}
       >
         <img
           src={
-            searchInfoBarOpen || favouriteBarOpen ? arrowLeftImg : arrowRightImg
+            searchInfoBarOpen || favouriteBarOpen || placeCardOpen ? arrowLeftImg : arrowRightImg
           }
           alt="logo"
         />

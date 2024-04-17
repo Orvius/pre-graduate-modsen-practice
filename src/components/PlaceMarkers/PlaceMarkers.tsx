@@ -3,11 +3,17 @@ import { Icon } from "leaflet";
 import { PLACES } from "@constants/searchSettingsConstants";
 import { Places } from "@type/places";
 
+import { useAppDispatch } from "@hooks/reduxHooks";
+import { fetchPlaceInfoById, setPlaceCardOpen } from "@store/cardInfoSlice";
+
+
 interface PlacesMapProps {
   places: Places[];
 }
 
 const PlaceMarkers: React.FC<PlacesMapProps> = ({ places }) => {
+  const dispatch = useAppDispatch();
+
   const icons: { [key: string]: Icon } = {};
   PLACES.forEach((place) => {
     icons[place.kind] = new Icon({
@@ -27,6 +33,11 @@ const PlaceMarkers: React.FC<PlacesMapProps> = ({ places }) => {
     return undefined;
   };
 
+  const handleMarkerClick = async (xid: string) => {
+    await dispatch(fetchPlaceInfoById(xid));
+    dispatch(setPlaceCardOpen(true));
+  };
+
   return (
     <>
       {places.map((place) => (
@@ -34,6 +45,9 @@ const PlaceMarkers: React.FC<PlacesMapProps> = ({ places }) => {
           key={place.xid}
           position={[place.point.lat, place.point.lon]}
           icon={getPlaceIcon(place.kinds)}
+          eventHandlers={{
+            click: () => handleMarkerClick(place.xid)
+          }}
         >
           <Popup>{place.name}</Popup>
         </Marker>

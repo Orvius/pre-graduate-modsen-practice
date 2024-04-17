@@ -11,6 +11,9 @@ import loginImg from "@assets/images/loginbtn.svg";
 import arrowLeftImg from "@assets/images/arrowLeft.svg";
 import arrowRightImg from "@assets/images/arrowRight.svg";
 import locationMarkerImg from "@assets/images/locationMarker.svg";
+import favoriteIcon from "@assets/images/favoriteIcon_little.svg";
+import locationIcon from "@assets/images/locationIcon_little.svg";
+import noPhoto from "@assets/images/noPhoto.svg";
 
 export {
   locationFalseImg,
@@ -26,4 +29,7 @@ export {
   arrowLeftImg,
   arrowRightImg,
   locationMarkerImg,
+  favoriteIcon,
+  locationIcon,
+  noPhoto,
 };

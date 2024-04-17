@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setRadius, setCircleVisibility } from "@store/searchInfoBarSlice";
 import { fetchPlaces, FetchPlacesArguments } from "@store/placesSlice";
@@ -10,9 +10,9 @@ import styles from "./SearchInfoBar.module.css";
 
 const SearchInfoBar: React.FC = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>(["historic"]);
+  const { loading } = useAppSelector((state) => state.places);
   const { radius } = useAppSelector((state) => state.searchInfoBar);
-  const latitude = useAppSelector((state) => state.location.latitude ?? 0);
-  const longitude = useAppSelector((state) => state.location.longitude ?? 0);
+  const { latitude, longitude } = useAppSelector((state) => state.location);
   const dispatch = useAppDispatch();
 
   const placeSelect = (selectedPlaces: string[]) => {
@@ -30,13 +30,17 @@ const SearchInfoBar: React.FC = () => {
     const radiusInMeters = String(parseInt(radius) * 1000);
     const fetch: FetchPlacesArguments = {
       radius: radiusInMeters,
-      lat: latitude,
-      lon: longitude,
+      lat: latitude ?? 0,
+      lon: longitude ?? 0,
       kinds: selectedPlaces.join(","),
     };
     await dispatch(fetchPlaces(fetch));
     dispatch(setCircleVisibility(true));
   };
+
+  const searchButtonContent = useMemo(() => {
+    return loading ? "Загрузка..." : <img src={searchBtnOff} alt="Начать поиск" />;
+  }, [loading]);
 
   return (
     <>
@@ -62,7 +66,7 @@ const SearchInfoBar: React.FC = () => {
           </div>
         </div>
         <button className={styles.searchButton} onClick={toggSearch}>
-          <img src={searchBtnOff} alt="Начать поиск" />
+          {searchButtonContent}
         </button>
       </div>
     </>
