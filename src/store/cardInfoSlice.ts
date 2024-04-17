@@ -39,6 +39,7 @@ interface CardInfoSliceState {
   list: PlaceInfo[];
   loading: boolean;
   error: string | null;
+
   placeCardOpen: boolean;
 }
 
@@ -47,6 +48,7 @@ const initialState: CardInfoSliceState = {
   list: [],
   loading: false,
   error: null,
+
   placeCardOpen: false,
 };
 
@@ -78,6 +80,12 @@ const cardInfoSlice = createSlice({
     setPlaceCardOpen(state, action: PayloadAction<boolean>) {
       state.placeCardOpen = action.payload;
     },
+    addFavouritePlace(state, action: PayloadAction<PlaceInfo>) {
+      state.list.push(action.payload);
+    },
+    removeFavoritePlace(state, action: PayloadAction<string>) {
+      state.list = state.list.filter((place) => place.xid !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -97,7 +105,7 @@ const cardInfoSlice = createSlice({
 });
 
 export default cardInfoSlice.reducer;
-export const { addCardInfo, setPlaceCardOpen } = cardInfoSlice.actions;
+export const { addCardInfo, setPlaceCardOpen, addFavouritePlace, removeFavoritePlace  } = cardInfoSlice.actions;
 
 function isError(action: Action) {
   return action.type.endsWith("rejected");

@@ -1,5 +1,5 @@
 import styles from "./SideBar.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@hooks/reduxHooks";
 import { setPlaceCardOpen } from "@store/cardInfoSlice";
 import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
@@ -22,6 +22,13 @@ const SideBar: React.FC = () => {
   const [favouriteBarOpen, setFavouriteBarOpen] = useState(false);
   const placeCardOpen = useAppSelector((state) => state.cardInfo.placeCardOpen);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (placeCardOpen) {
+      setSearchInfoBarOpen(false);
+      setFavouriteBarOpen(false);
+    }
+  }, [placeCardOpen]);
 
   const toggleSearchInfoBar = () => {
     setSearchInfoBarOpen(!searchInfoBarOpen);

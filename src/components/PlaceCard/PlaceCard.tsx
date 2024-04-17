@@ -1,10 +1,13 @@
 import styles from "./PlaceCard.module.css";
 
-import { useAppSelector } from "@hooks/reduxHooks";
+import { useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { favoriteIcon, locationIcon, noPhoto } from "@constants/images";
+import { addFavouritePlace, removeFavoritePlace } from "@store/cardInfoSlice";
 
 const PlaceCard: React.FC = () => {
-  const { currentPlace } = useAppSelector((state) => state.cardInfo);
+  const { currentPlace, list } = useAppSelector((state) => state.cardInfo);
+  const dispatch = useAppDispatch();
 
   if (!currentPlace) {
     return null;
@@ -24,6 +27,22 @@ const PlaceCard: React.FC = () => {
   };
   const formattedAddress: string = formatAddress(currentPlace.address);
 
+  const toggleAddFavorite = () => {
+    if (currentPlace) {
+      dispatch(addFavouritePlace(currentPlace));
+    }
+  };
+
+  const toggleRemoveFavorite = () => {
+    if (currentPlace) {
+      dispatch(removeFavoritePlace(currentPlace.xid));
+    }
+  };
+
+  const isFavorite = useMemo(() => {
+    return list.some((place) => place.xid === currentPlace.xid);
+  }, [list, currentPlace]);
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.placeCard}>
@@ -39,7 +58,11 @@ const PlaceCard: React.FC = () => {
             <div className={styles.locationTitle}>{formattedAddress}</div>
           </div>
           <div className={styles.placeUrl}>
-            <a className={styles.siteUrl} href={currentPlace.url} target="_blank">
+            <a
+              className={styles.siteUrl}
+              href={currentPlace.url}
+              target="_blank"
+            >
               {currentPlace.url}
             </a>
           </div>
@@ -50,10 +73,23 @@ const PlaceCard: React.FC = () => {
           </div>
         </div>
         <div className={styles.cardButtons}>
-          <button className={styles.addToFavoriteButton}>
-            <img src={favoriteIcon} alt="Сохранить" />
-            Сохранить
-          </button>
+          {!isFavorite ? (
+            <button
+              className={styles.addToFavoriteButton}
+              onClick={toggleAddFavorite}
+            >
+              <img src={favoriteIcon} alt="Сохранить" />
+              Сохранить
+            </button>
+          ) : (
+            <button
+              className={styles.addToFavoriteButton}
+              onClick={toggleRemoveFavorite}
+            >
+              <img src={favoriteIcon} alt="Удалить" />
+              Удалить
+            </button>
+          )}
           <button className={styles.routeButton}>
             <img src={locationIcon} alt="Маршрут" />
             Маршрут

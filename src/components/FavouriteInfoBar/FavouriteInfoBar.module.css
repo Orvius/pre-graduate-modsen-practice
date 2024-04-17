@@ -10,7 +10,71 @@
   border-left: 3px solid #cecece;
   box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.12);
   z-index: 1000;
-  padding: 25px;
   font-size: 20px;
   font-weight: 800;
+  padding: 25px 25px 25px 20px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.favouriteInfoBarText {
+  margin-bottom: 15px;
+}
+
+.favoriteList {
+  overflow-y: auto;
+}
+
+.favoriteCard {
+  width: 350px;
+  max-height: auto;
+  border: 3px solid #c4c4c4;
+  border-radius: 10px;
+  padding: 20px 30px 20px 20px;
+  margin-bottom: 25px;
+}
+
+.favoriteBlock {
+  display: flex;
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.favoriteImg {
+  border: none; 
+  margin-right: 10px;
+}
+
+.favoriteImg img{
+  width: 120px;
+  border-radius: 10px;
+}
+
+.favoriteName {
+  font-family: Mont;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-family: Mont;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 20px;
+}
+
+.favoriteButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goToButton {
+  background-color: #ffffff;
 }
