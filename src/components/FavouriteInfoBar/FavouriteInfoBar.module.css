@@ -41,11 +41,11 @@
 }
 
 .favoriteImg {
-  border: none; 
+  border: none;
   margin-right: 10px;
 }
 
-.favoriteImg img{
+.favoriteImg img {
   width: 120px;
   border-radius: 10px;
 }
@@ -73,6 +73,10 @@
 .favoriteButtons {
   display: flex;
   justify-content: space-between;
+}
+
+.favoriteButton {
+  fill: #c75e5e;
 }
 
 .goToButton {

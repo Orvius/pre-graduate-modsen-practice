@@ -11,7 +11,7 @@ import loginImg from "@assets/images/loginbtn.svg";
 import arrowLeftImg from "@assets/images/arrowLeft.svg";
 import arrowRightImg from "@assets/images/arrowRight.svg";
 import locationMarkerImg from "@assets/images/locationMarker.svg";
-import favoriteIcon from "@assets/images/favoriteIcon_little.svg";
+import FavoriteIcon from "@assets/images/favoriteIcon_little.svg?react";
 import locationIcon from "@assets/images/locationIcon_little.svg";
 import noPhoto from "@assets/images/noPhoto.svg";
 
@@ -29,7 +29,7 @@ export {
   arrowLeftImg,
   arrowRightImg,
   locationMarkerImg,
-  favoriteIcon,
+  FavoriteIcon,
   locationIcon,
   noPhoto,
 };

@@ -53,7 +53,7 @@
   box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.12);
   border: none;
   outline: none;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .sideBarOpen_close img {
