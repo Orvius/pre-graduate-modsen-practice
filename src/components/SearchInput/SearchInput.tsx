@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import styles from "./SearchInput.module.css";
-import { searchIconInput } from "@constants/images";
+import { SearchIcon } from "@constants/images";
 
 const SearchInput: React.FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -12,7 +12,7 @@ const SearchInput: React.FC = () => {
 
   return (
     <div className={styles.searchInput}>
-      <img src={searchIconInput} alt="Поиск" />
+      <SearchIcon className={styles.searchInputImg}/>
       <input
         placeholder="Место, адрес..."
         value={query}

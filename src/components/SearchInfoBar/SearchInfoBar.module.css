@@ -42,4 +42,23 @@
   font-weight: 600;
   background-color: #5e7bc7;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchButton:hover {
+  border: 3px solid #c4c4c4;
+}
+
+.searchButtonImg {
+  fill: #ffffff;
+}
+
+.errorMessage {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }

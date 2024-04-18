@@ -2,9 +2,8 @@ import styles from "./PlaceCard.module.css";
 
 import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { FavoriteIcon, locationIcon, noPhoto } from "@constants/images";
+import { FavoriteIcon, LocationIcon, noPhoto, arrowLeftImg } from "@constants/images";
 import { addFavouritePlace, removeFavoritePlace } from "@store/cardInfoSlice";
-import { arrowLeftImg } from "@constants/images";
 import routes from "@constants/routes.js";
 import { Link } from "react-router-dom";
 
@@ -91,15 +90,15 @@ const PlaceCard: React.FC = () => {
             </button>
           ) : (
             <button
-              className={styles.addToFavoriteButton}
+              className={styles.removeFavoriteButton}
               onClick={toggleRemoveFavorite}
             >
-              <FavoriteIcon className={styles.addToFavoriteButtonImg} />
+              <FavoriteIcon className={styles.removeFavoriteButtonImg} />
               Удалить
             </button>
           )}
           <button className={styles.routeButton}>
-            <img src={locationIcon} alt="Маршрут" />
+            <LocationIcon className={styles.routeButtonImg}/>
             Маршрут
           </button>
         </div>

@@ -6,10 +6,8 @@ import { setPlaceCardOpen } from "@store/cardInfoSlice";
 
 import {
   logo,
-  searchIconOff,
-  searchIconOn,
-  favoritesOff,
-  favoritesOn,
+  SearchIcon,
+  FavoriteIcon,
   loginImg,
   arrowLeftImg,
   arrowRightImg,
@@ -44,26 +42,20 @@ const SideBar: React.FC = () => {
         <div className={styles.sidebarMenu}>
           <div className={styles.sidebarButtons}>
             <button
-              className={styles.sidebarButton}
+              className={`${styles.searchButton} ${isSearchRoute ? styles.on : ""}`}
               onClick={() =>
                 navigate(isSearchRoute ? routes.home : routes.search)
               }
             >
-              <img
-                src={isSearchRoute ? searchIconOn : searchIconOff}
-                alt="search"
-              />
+              <SearchIcon className={styles.searchButtonImg}/>
             </button>
             <button
-              className={styles.sidebarButton}
+              className={`${styles.favouriteButton} ${isFavouritesRoute ? styles.on : ""}`}
               onClick={() =>
                 navigate(isFavouritesRoute ? routes.home : routes.favourites)
               }
             >
-              <img
-                src={isFavouritesRoute ? favoritesOn : favoritesOff}
-                alt="favorites"
-              />
+              <FavoriteIcon className={styles.favouriteButtonImg}/>
             </button>
           </div>
           <button className={styles.loginButton}>

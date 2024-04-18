@@ -75,10 +75,33 @@
   justify-content: space-between;
 }
 
+.favoriteButtons a {
+  height: 20px;
+}
+
 .favoriteButton {
   fill: #c75e5e;
 }
 
+.removeFavoriteButton {
+  background-color: #ffffff;
+}
+
+.removeFavoriteButtonImg {
+  fill:#c75e5e;
+}
+
+.removeFavoriteButtonImg:hover {
+  fill:#c4c4c4;
+  transition: all 0.3s ease-out;
+}
+
 .goToButton {
   background-color: #ffffff;
+}
+
+.noPlaces {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
 }

@@ -9,8 +9,9 @@
   margin-bottom: 35px;
 }
 
-.searchInput img {
+.searchInputImg {
   width: 22px;
+  fill: #919191;
 }
 
 .searchInput input {
