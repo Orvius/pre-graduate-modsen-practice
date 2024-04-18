@@ -1,10 +1,8 @@
 import styles from "./SideBar.module.css";
-import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@hooks/reduxHooks";
+import routes from "@constants/routes.js";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setPlaceCardOpen } from "@store/cardInfoSlice";
-import SearchInfoBar from "@components/SearchInfoBar/SearchInfoBar";
-import FavouriteInfoBar from "@components/FavouriteInfoBar/FavouriteInfoBar";
-import PlaceCard from "@components/PlaceCard/PlaceCard";
 
 import {
   logo,
@@ -18,63 +16,52 @@ import {
 } from "@constants/images";
 
 const SideBar: React.FC = () => {
-  const [searchInfoBarOpen, setSearchInfoBarOpen] = useState(false);
-  const [favouriteBarOpen, setFavouriteBarOpen] = useState(false);
-  const placeCardOpen = useAppSelector((state) => state.cardInfo.placeCardOpen);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isPlaceCardOpen = useAppSelector(
+    (state) => state.cardInfo.placeCardOpen
+  );
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (placeCardOpen) {
-      setSearchInfoBarOpen(false);
-      setFavouriteBarOpen(false);
-    }
-  }, [placeCardOpen]);
-
-  const toggleSearchInfoBar = () => {
-    setSearchInfoBarOpen(!searchInfoBarOpen);
-    if (favouriteBarOpen) setFavouriteBarOpen(false);
-    if (placeCardOpen) dispatch(setPlaceCardOpen(false));
-  };
-
-  const toggleFavouriteBar = () => {
-    setFavouriteBarOpen(!favouriteBarOpen);
-    if (searchInfoBarOpen) setSearchInfoBarOpen(false);
-    if (placeCardOpen) dispatch(setPlaceCardOpen(false));
-  };
+  const isSearchRoute = pathname === routes.search;
+  const isFavouritesRoute = pathname === routes.favourites;
 
   const toggleBothBars = () => {
-    if (searchInfoBarOpen || favouriteBarOpen || placeCardOpen) {
-      setSearchInfoBarOpen(false);
-      setFavouriteBarOpen(false);
-      dispatch(setPlaceCardOpen(false));
-    } else {
-      setSearchInfoBarOpen(true);
-    }
+    dispatch(setPlaceCardOpen(false));
+    navigate(
+      isSearchRoute || isFavouritesRoute || isPlaceCardOpen
+        ? routes.home
+        : routes.search
+    );
   };
 
   return (
     <>
       <div className={styles.sidebarContainer}>
-        <a className={styles.sidebarLogo} href="">
+        <Link to={routes.home} className={styles.sidebarLogo}>
           <img src={logo} alt="logo" />
-        </a>
+        </Link>
         <div className={styles.sidebarMenu}>
           <div className={styles.sidebarButtons}>
             <button
               className={styles.sidebarButton}
-              onClick={toggleSearchInfoBar}
+              onClick={() =>
+                navigate(isSearchRoute ? routes.home : routes.search)
+              }
             >
               <img
-                src={searchInfoBarOpen ? searchIconOn : searchIconOff}
+                src={isSearchRoute ? searchIconOn : searchIconOff}
                 alt="search"
               />
             </button>
             <button
               className={styles.sidebarButton}
-              onClick={toggleFavouriteBar}
+              onClick={() =>
+                navigate(isFavouritesRoute ? routes.home : routes.favourites)
+              }
             >
               <img
-                src={favouriteBarOpen ? favoritesOn : favoritesOff}
+                src={isFavouritesRoute ? favoritesOn : favoritesOff}
                 alt="favorites"
               />
             </button>
@@ -84,18 +71,19 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-      {searchInfoBarOpen && <SearchInfoBar />}
-      {favouriteBarOpen && <FavouriteInfoBar />}
-      {placeCardOpen && <PlaceCard />}
       <button
         className={`${styles.sideBarOpen_close} ${
-          searchInfoBarOpen || favouriteBarOpen || placeCardOpen ? styles.moved : ""
+          isSearchRoute || isFavouritesRoute || isPlaceCardOpen
+            ? styles.moved
+            : ""
         }`}
         onClick={toggleBothBars}
       >
         <img
           src={
-            searchInfoBarOpen || favouriteBarOpen || placeCardOpen ? arrowLeftImg : arrowRightImg
+            isSearchRoute || isFavouritesRoute || isPlaceCardOpen
+              ? arrowLeftImg
+              : arrowRightImg
           }
           alt="logo"
         />

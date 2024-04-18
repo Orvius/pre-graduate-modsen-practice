@@ -1,16 +1,19 @@
 import styles from "./FavouriteInfoBar.module.css";
 import SearchInput from "@components/SearchInput/SearchInput";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { favoriteIcon, arrowRightImg, noPhoto } from "@constants/images";
-import { fetchPlaceInfoById, setPlaceCardOpen } from "@store/cardInfoSlice";
+import { addCardInfo } from "@store/cardInfoSlice";
+import { FavoriteIcon, arrowRightImg, noPhoto } from "@constants/images";
+import { Link } from "react-router-dom";
 
 const FavouriteInfoBar: React.FC = () => {
-  const list = useAppSelector((state) => state.cardInfo.list);
   const dispatch = useAppDispatch();
+  const list = useAppSelector((state) => state.cardInfo.list);
 
-  const handleGoToPlace = async (xid: string) => {
-    await dispatch(fetchPlaceInfoById(xid));
-    dispatch(setPlaceCardOpen(true));
+  const handleGoToPlace = (xid: string) => {
+    const place = list.find((place) => place.xid === xid);
+    if (place) {
+      dispatch(addCardInfo(place));
+    }
   };
 
   return (
@@ -33,10 +36,15 @@ const FavouriteInfoBar: React.FC = () => {
             {place.wikipedia_extracts?.text || "Нет описания места"}
           </div>
           <div className={styles.favoriteButtons}>
-            <img src={favoriteIcon} alt="В избранном" />
-            <button className={styles.goToButton} onClick={() => handleGoToPlace(place.xid)}>
-              <img src={arrowRightImg} alt="Перейти" />
-            </button>
+            <FavoriteIcon className={styles.favoriteButton} />
+            <Link to={`/place/${place.xid}`}>
+              <button
+                className={styles.goToButton}
+                onClick={() => handleGoToPlace(place.xid)}
+              >
+                <img src={arrowRightImg} alt="Перейти" />
+              </button>
+            </Link>
           </div>
         </div>
       ))}

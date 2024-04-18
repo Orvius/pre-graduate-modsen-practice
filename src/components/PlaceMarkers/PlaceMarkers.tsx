@@ -5,7 +5,7 @@ import { Places } from "@type/places";
 
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { fetchPlaceInfoById, setPlaceCardOpen } from "@store/cardInfoSlice";
-
+import { Link } from "react-router-dom";
 
 interface PlacesMapProps {
   places: Places[];
@@ -46,10 +46,12 @@ const PlaceMarkers: React.FC<PlacesMapProps> = ({ places }) => {
           position={[place.point.lat, place.point.lon]}
           icon={getPlaceIcon(place.kinds)}
           eventHandlers={{
-            click: () => handleMarkerClick(place.xid)
+            click: () => handleMarkerClick(place.xid),
           }}
         >
-          <Popup>{place.name}</Popup>
+          <Popup>
+            <Link to={`/place/${place.xid}`}>{place.name}</Link>
+          </Popup>
         </Marker>
       ))}
     </>

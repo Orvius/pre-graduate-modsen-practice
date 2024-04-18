@@ -2,8 +2,11 @@ import styles from "./PlaceCard.module.css";
 
 import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { favoriteIcon, locationIcon, noPhoto } from "@constants/images";
+import { FavoriteIcon, locationIcon, noPhoto } from "@constants/images";
 import { addFavouritePlace, removeFavoritePlace } from "@store/cardInfoSlice";
+import { arrowLeftImg } from "@constants/images";
+import routes from "@constants/routes.js";
+import { Link } from "react-router-dom";
 
 const PlaceCard: React.FC = () => {
   const { currentPlace, list } = useAppSelector((state) => state.cardInfo);
@@ -45,6 +48,11 @@ const PlaceCard: React.FC = () => {
 
   return (
     <div className={styles.cardContainer}>
+      <Link to={routes.favourites} className={styles.backLink}>
+        <button className={styles.backButton}>
+          <img src={arrowLeftImg} alt="Назад" /> Избранное
+        </button>
+      </Link>
       <div className={styles.placeCard}>
         <div className={styles.placeImg}>
           <img
@@ -78,7 +86,7 @@ const PlaceCard: React.FC = () => {
               className={styles.addToFavoriteButton}
               onClick={toggleAddFavorite}
             >
-              <img src={favoriteIcon} alt="Сохранить" />
+              <FavoriteIcon className={styles.addToFavoriteButtonImg} />
               Сохранить
             </button>
           ) : (
@@ -86,7 +94,7 @@ const PlaceCard: React.FC = () => {
               className={styles.addToFavoriteButton}
               onClick={toggleRemoveFavorite}
             >
-              <img src={favoriteIcon} alt="Удалить" />
+              <FavoriteIcon className={styles.addToFavoriteButtonImg} />
               Удалить
             </button>
           )}
