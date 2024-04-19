@@ -14,15 +14,10 @@
   font-weight: 800;
   padding: 25px 25px 25px 20px;
   overflow-y: auto;
-  padding-right: 15px;
 }
 
 .favouriteInfoBarText {
   margin-bottom: 15px;
-}
-
-.favoriteList {
-  overflow-y: auto;
 }
 
 .favoriteCard {
@@ -88,11 +83,11 @@
 }
 
 .removeFavoriteButtonImg {
-  fill:#c75e5e;
+  fill: #c75e5e;
 }
 
 .removeFavoriteButtonImg:hover {
-  fill:#c4c4c4;
+  fill: #c4c4c4;
   transition: all 0.3s ease-out;
 }
 
@@ -104,4 +99,49 @@
   font-size: 18px;
   font-weight: 500;
   margin-top: 10px;
+}
+
+@media (max-width: 770px) {
+  .favouriteInfoBarContainer {
+    left: 70px;
+    width: 300px;
+    font-size: 18px;
+  }
+
+  .favoriteCard {
+    width: 250px;
+    padding: 15px 20px 15px 15px;
+  }
+
+  .favoriteImg img {
+    width: 90px;
+  }
+
+  .favoriteName {
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+    overflow: hidden;
+  }
+
+  .noPlaces {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .favouriteInfoBarContainer {
+    left: 60px;
+    width: 260px;
+    padding: 10px 5px 25px 5px;
+  }
+
+  .favoriteCard {
+    width: 240px;
+    padding: 15px 5px 5px 10px;
+  }
+
+  .favoriteButtons a {
+    margin: 0px 5px 5px 5px;
+  }
 }

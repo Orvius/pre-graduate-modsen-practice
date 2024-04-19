@@ -25,7 +25,7 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 li.selected {
@@ -45,4 +45,24 @@ li.selected {
 ::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background: #00000070;
+}
+
+@media (max-width: 770px) {
+  .searchSettingsContainer {
+    width: 250px;
+  }
+  .listOfPlaces li {
+    width: 170px;
+  }
+}
+
+@media (max-width: 375px) {
+  .searchSettingsContainer {
+    width: 220px;
+    margin: 5px 0px 10px 0px;
+  }
+
+  .listOfPlaces {
+    padding: 10px 10px 0px 10px;
+  }
 }

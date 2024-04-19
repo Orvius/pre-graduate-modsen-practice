@@ -5,11 +5,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { setPosition } from "@store/locationSlice";
 
 import styles from "./LocationMarker.module.css";
-import {
-  locationFalseImg,
-  locationTrueImg,
-  locationMarkerImg,
-} from "@constants/images";
+import { LocationImg, locationMarkerImg } from "@constants/images";
 
 type MarkerPosition = LatLngExpression | null;
 
@@ -67,12 +63,11 @@ const LocationMarker: React.FC = () => {
         </>
       )}
       <button
-        className={`${styles.locationButton} ${active ? "active" : ""}`}
+        className={`${styles.locationButton} ${active ? styles.on : ""}`}
         onClick={handleLocateButtonClick}
       >
-        <img
-          src={active ? locationTrueImg : locationFalseImg}
-          alt={"Your geolocation"}
+        <LocationImg
+          className={`${styles.locationButtonImg} ${active ? styles.on : ""}`}
         />
       </button>
     </>

@@ -5,3 +5,17 @@
   width: calc(100% - 110px);
   height: 100%;
 }
+
+@media (max-width: 770px) {
+  .leaflet-container {
+    left: 70px;
+    width: calc(100% - 70px);
+  }
+}
+
+@media (max-width: 375px) {
+  .leaflet-container {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+}

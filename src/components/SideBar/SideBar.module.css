@@ -122,3 +122,45 @@
 .sideBarOpen_close.moved {
   left: 510px;
 }
+
+@media (max-width: 770px) {
+  .sidebarContainer {
+    width: 70px;
+  }
+
+  .searchButton,
+  .favouriteButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+
+  .sideBarOpen_close {
+    left: 70px;
+    width: 28px;
+    height: 60px;
+  }
+
+  .sideBarOpen_close.moved {
+    left: 370px;
+  }
+
+  .loginButton img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 375px) {
+  .sidebarContainer {
+    width: 60px;
+  }
+
+  .sideBarOpen_close {
+    display: none;
+  }
+
+  .sideBarOpen_close.moved {
+    display: none;
+  }
+}

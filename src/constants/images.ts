@@ -1,5 +1,4 @@
-import locationFalseImg from "@assets/images/Location_False.svg";
-import locationTrueImg from "@assets/images/Location_True.svg";
+import LocationImg from "@assets/images/locationbtn.svg?react";
 import logo from "@assets/images/logo.svg";
 import SearchIcon from "@assets/images/searchIcon.svg?react";
 import FavoriteIcon from "@assets/images/favoriteIcon_little.svg?react";
@@ -11,8 +10,7 @@ import locationMarkerImg from "@assets/images/locationMarker.svg";
 import noPhoto from "@assets/images/noPhoto.svg";
 
 export {
-  locationFalseImg,
-  locationTrueImg,
+  LocationImg,
   logo,
   loginImg,
   arrowLeftImg,
